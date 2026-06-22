@@ -1,0 +1,6 @@
+{
+  "name": "DOBGE",
+  "description": "Premium Spanish Streetwear & Fashion Landing Page with interactive custom cart, collection browsers, and simulated seamless checkout.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
