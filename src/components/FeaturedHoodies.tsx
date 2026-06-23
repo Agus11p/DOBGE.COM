@@ -62,10 +62,10 @@ export default function FeaturedHoodies({ products, onViewProduct, onScrollToCat
   };
 
   return (
-    <div className="relative w-full bg-[#0B0B0C] text-white py-18 px-6 sm:px-12 md:px-16 border-t border-b border-neutral-900 select-none overflow-hidden">
+    <div className="relative w-full bg-neutral-50 text-black py-12 sm:py-18 px-6 sm:px-12 md:px-16 border-t border-b border-neutral-200 select-none overflow-hidden">
       
       {/* Background Translucent Watermark */}
-      <div className="absolute left-4 bottom-[-20px] pointer-events-none select-none font-display text-[120px] sm:text-[220px] md:text-[280px] font-black tracking-widest text-neutral-900/10 leading-none">
+      <div className="absolute left-4 sm:left-6 bottom-[-10px] sm:bottom-[-20px] pointer-events-none select-none font-display text-[120px] sm:text-[220px] md:text-[300px] font-black tracking-widest text-black/[0.03] leading-none uppercase">
         D*BGE
       </div>
 
@@ -74,24 +74,24 @@ export default function FeaturedHoodies({ products, onViewProduct, onScrollToCat
         {/* Left Side: Editorial Typography block */}
         <div className="lg:col-span-4 flex flex-col items-start">
           <h2 className="font-display text-[55px] sm:text-[75px] md:text-[85px] uppercase font-black leading-[0.85] tracking-tight">
-            <span className="block text-white">SUDADERAS</span>
-            <span className="block text-[#FF4838]">CON CAPUCHA</span>
+            <span className="block text-black">SUDADERAS</span>
+            <span className="block text-[#FF2B85]">CON CAPUCHA</span>
           </h2>
           
-          <p className="mt-6 text-xs sm:text-sm font-sans tracking-widest text-neutral-400 uppercase leading-relaxed font-light max-w-sm">
+          <p className="mt-6 text-xs sm:text-sm font-sans tracking-widest text-neutral-600 uppercase leading-relaxed font-light max-w-sm">
             CORTE OVERSIZED. ALGODÓN PESADO 450 GSM. DETALLES BORDADOS A MANO EN MADRID.
           </p>
 
           <button
             onClick={onScrollToCatalog}
-            className="mt-8 border border-neutral-800 hover:border-neutral-500 hover:text-[#FF4838] transition-all bg-transparent text-white px-5 py-2.5 font-mono text-xs uppercase tracking-widest cursor-pointer"
+            className="mt-8 border border-neutral-300 hover:border-black hover:text-[#FF2B85] transition-all bg-transparent text-black px-5 py-2.5 font-mono text-xs uppercase tracking-widest cursor-pointer"
           >
             VER TODO →
           </button>
         </div>
 
         {/* Right Side: Showcase Row of Hoodies */}
-        <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div className="lg:col-span-8 flex sm:grid sm:grid-cols-3 overflow-x-auto sm:overflow-x-visible gap-6 pb-4 sm:pb-0 no-scrollbar snap-x snap-mandatory">
           {featuredList.map((item, index) => {
             if (!item.product) return null;
             const images = [item.product.image, item.product.hoverImage, item.product.lifestyleImage].filter(Boolean) as string[];
@@ -101,11 +101,11 @@ export default function FeaturedHoodies({ products, onViewProduct, onScrollToCat
               <div 
                 key={index}
                 onClick={() => onViewProduct(item.product!)}
-                className="group cursor-pointer flex flex-col gap-3.5"
+                className="group cursor-pointer flex flex-col gap-3.5 min-w-[70vw] sm:min-w-0 snap-center flex-shrink-0"
               >
                 {/* Image panel with numbers in corner */}
-                <div className="relative aspect-[3/4] bg-neutral-900/40 border border-neutral-900 overflow-hidden">
-                  <span className="absolute top-4 right-4 z-20 font-mono text-[11px] text-neutral-600 group-hover:text-[#FF4838] transition-colors">
+                <div className="relative aspect-[3/4] bg-neutral-200/45 border border-neutral-200 overflow-hidden">
+                  <span className="absolute top-4 right-4 z-20 font-mono text-[11px] text-neutral-400 group-hover:text-[#FF2B85] transition-colors">
                     {item.num}
                   </span>
                   
@@ -128,14 +128,14 @@ export default function FeaturedHoodies({ products, onViewProduct, onScrollToCat
                     <div className="absolute inset-x-2 top-1/2 -translate-y-1/2 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30">
                       <button
                         onClick={(e) => handlePrevImage(e, item.product!.id, images.length)}
-                        className="bg-black/85 hover:bg-[#FF4838] border border-neutral-850 p-1 text-white transition-colors cursor-pointer rounded-full"
+                        className="bg-black/85 hover:bg-[#FF2B85] border border-neutral-700 p-1 text-white transition-colors cursor-pointer rounded-full"
                         title="Imagen anterior"
                       >
                         <ChevronLeft className="w-3.5 h-3.5" />
                       </button>
                       <button
                         onClick={(e) => handleNextImage(e, item.product!.id, images.length)}
-                        className="bg-black/85 hover:bg-[#FF4838] border border-neutral-850 p-1 text-white transition-colors cursor-pointer rounded-full"
+                        className="bg-black/85 hover:bg-[#FF2B85] border border-neutral-700 p-1 text-white transition-colors cursor-pointer rounded-full"
                         title="Siguiente imagen"
                       >
                         <ChevronRight className="w-3.5 h-3.5" />
@@ -152,7 +152,7 @@ export default function FeaturedHoodies({ products, onViewProduct, onScrollToCat
                           type="button"
                           onClick={(e) => handleDotClick(e, item.product!.id, dotIdx)}
                           className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                            activeIdx === dotIdx ? 'bg-[#FF4838] w-3.5' : 'bg-neutral-600 hover:bg-neutral-450'
+                            activeIdx === dotIdx ? 'bg-[#FF2B85] w-3.5' : 'bg-neutral-300 hover:bg-neutral-500'
                           }`}
                           title={`Ver imagen ${dotIdx + 1}`}
                         />
@@ -161,15 +161,15 @@ export default function FeaturedHoodies({ products, onViewProduct, onScrollToCat
                   )}
                   
                   {/* micro interactive backdrop */}
-                  <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none animate-none" />
+                  <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                 </div>
 
                 {/* Hoodie details */}
                 <div className="flex flex-col font-mono text-[11px] tracking-wider uppercase">
-                  <span className="text-white group-hover:text-[#FF4838] transition-colors font-semibold">
+                  <span className="text-black group-hover:text-[#FF2B85] transition-colors font-semibold">
                     {item.displayTitle}
                   </span>
-                  <span className="text-neutral-500 mt-0.5">
+                  <span className="text-neutral-600 mt-0.5">
                     €{item.product.price.toFixed(2)}
                   </span>
                 </div>

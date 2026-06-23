@@ -63,7 +63,7 @@ export default function AddToCartButton({
       className={`relative overflow-hidden w-full h-[52px] text-xs font-mono font-bold tracking-widest uppercase flex items-center justify-center transition-all duration-300 rounded-none border select-none cursor-pointer ${
         status === 'success'
           ? 'bg-green-600 border-green-600 text-white'
-          : 'bg-[#FF4838] border-[#FF4838] text-white hover:bg-white hover:text-black hover:border-white'
+          : 'bg-black border-black text-white hover:bg-[#FF2B85] hover:border-[#FF2B85]'
       } ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`}
     >
       {/* Background slide/scale pulse overlay for interaction feedback */}
@@ -135,7 +135,7 @@ export default function AddToCartButton({
                 }}
                 className="absolute bottom-[23px] z-30 flex justify-center w-6 h-6"
               >
-                <Shirt className="w-5 h-5 text-white fill-white stroke-[#FF4838] stroke-[1.5]" />
+                <Shirt className="w-5 h-5 text-white fill-white stroke-[#FF2B85] stroke-[1.5]" />
               </motion.div>
 
               {/* Shopping Cart Icon */}

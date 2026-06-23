@@ -112,7 +112,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0C0C0D] text-white font-sans antialiased text-sm">
+    <div className="min-h-screen bg-white text-black font-sans antialiased text-sm">
       
       {/* 1. Header Navigation Bar */}
       <Navbar 
@@ -139,21 +139,21 @@ export default function App() {
       />
 
       {/* 3. Core Store Showcase (Filtered Catalog) */}
-      <main id="product-showcase" className="py-24 max-w-7xl mx-auto px-6 scroll-mt-10 select-none">
+      <main id="product-showcase" className="py-12 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 scroll-mt-10 select-none">
         
         {/* Editorial Title for collection */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-neutral-900 pb-8 mb-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-neutral-200 pb-4 md:pb-8 mb-6 md:mb-10">
           <div>
             <div className="flex items-center gap-2 mb-1.5">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF4838] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF4838]"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF2B85] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF2B85]"></span>
               </span>
-              <span className="text-[10px] font-mono tracking-[0.3em] text-[#FF4838] uppercase font-bold">
+              <span className="text-[10px] font-mono tracking-[0.3em] text-[#FF2B85] uppercase font-bold">
                 COLECCIÓN CURADA & EXCLUSIVA
               </span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-display text-white uppercase font-black leading-none tracking-tight">
+            <h2 className="text-3xl sm:text-5xl font-display text-black uppercase font-black leading-none tracking-tight">
               {selectedCategory === 'todos' ? 'CATÁLOGO DISPONIBLE' : selectedCategory.replace('-', ' ')}
             </h2>
           </div>
@@ -163,19 +163,19 @@ export default function App() {
             
             {/* Live Search Input bar */}
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400" />
               <input 
                 type="text"
                 placeholder="Buscar prenda..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-neutral-900/60 border border-neutral-800 text-xs font-mono pl-9 pr-8 py-2 w-full sm:w-56 focus:outline-none focus:border-[#FF4838] placeholder:text-neutral-500 focus:bg-neutral-900 text-white transition-all uppercase"
+                className="bg-neutral-50 border border-neutral-200 text-xs font-mono pl-9 pr-8 py-2.5 w-full sm:w-56 focus:outline-none focus:border-[#FF2B85] placeholder:text-neutral-400 focus:bg-white text-black transition-all uppercase"
                 id="search-input"
               />
               {searchQuery && (
                 <button 
                   onClick={handleClearSearch}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white text-xs font-mono font-bold cursor-pointer"
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-black text-xs font-mono font-bold cursor-pointer"
                   title="Limpiar búsqueda"
                 >
                   ✕
@@ -184,8 +184,8 @@ export default function App() {
             </div>
 
             {/* Quick selector filter info */}
-            <div className="flex items-center gap-1.5 text-[10px] font-mono text-neutral-400 bg-neutral-900/45 px-3 py-2 border border-neutral-800 uppercase">
-              <SlidersHorizontal className="w-3.5 h-3.5 text-neutral-300" />
+            <div className="flex items-center gap-1.5 text-[10px] font-mono text-neutral-600 bg-neutral-50 px-3 py-2 border border-neutral-200 uppercase">
+              <SlidersHorizontal className="w-3.5 h-3.5 text-neutral-500" />
               <span>{filteredProducts.length} Artículos</span>
             </div>
             
@@ -193,15 +193,15 @@ export default function App() {
         </div>
 
         {/* Categories inline secondary navigator for comfort */}
-        <div className="flex flex-wrap gap-2 mb-10 pb-4 border-b border-neutral-900 text-[10px] uppercase tracking-wider font-mono">
+        <div className="flex flex-wrap gap-2 mb-6 md:mb-10 pb-4 border-b border-neutral-200 text-[10px] uppercase tracking-wider font-mono">
           {(['todos', 'nueva-temporada', 'hombre', 'mujer', 'mas-vendidos'] as const).map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
               className={`px-4.5 py-2.5 border transition-all cursor-pointer ${
                 selectedCategory === cat 
-                  ? 'bg-[#FF4838] text-white border-[#FF4838] font-bold shadow-lg shadow-red-950/20' 
-                  : 'bg-neutral-900/40 text-neutral-400 border-neutral-900 hover:border-neutral-700 hover:text-white'
+                  ? 'bg-[#FF2B85] text-white border-[#FF2B85] font-bold shadow-md shadow-pink-100' 
+                  : 'bg-neutral-50 text-neutral-650 border-neutral-200 hover:border-neutral-400 hover:text-black'
               }`}
               id={`cat-pill-${cat}`}
             >
@@ -212,7 +212,7 @@ export default function App() {
 
         {/* Dynamic products list grid */}
         {filteredProducts.length === 0 ? (
-          <div className="py-20 text-center border-2 border-dashed border-neutral-800 bg-neutral-900/40">
+          <div className="py-20 text-center border-2 border-dashed border-neutral-200 bg-neutral-50">
             <p className="text-sm font-mono text-neutral-500">
               No hemos encontrado ninguna prenda que coincida con "{searchQuery}"
             </p>
@@ -221,7 +221,7 @@ export default function App() {
                 setSearchQuery('');
                 setSelectedCategory('todos');
               }}
-              className="mt-4 inline-flex items-center gap-2 border border-[#FF4838] bg-[#FF4838] text-white hover:bg-white hover:text-black transition-colors px-6 py-2.5 text-[10px] font-mono uppercase tracking-widest cursor-pointer"
+              className="mt-4 inline-flex items-center gap-2 border border-[#FF2B85] bg-[#FF2B85] text-white hover:bg-black hover:border-black transition-colors px-6 py-2.5 text-[10px] font-mono uppercase tracking-widest cursor-pointer"
               id="clear-filters-btn"
             >
               <RefreshCw className="w-3.5 h-3.5" />
@@ -229,7 +229,7 @@ export default function App() {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12">
+          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-3 gap-y-6 md:gap-x-6 md:gap-y-12">
             {filteredProducts.map((prod) => (
               <ProductCard 
                 key={prod.id}

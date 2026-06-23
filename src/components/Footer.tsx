@@ -11,7 +11,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-neutral-950 text-neutral-400 select-none py-18 font-sans text-xs border-t border-neutral-900">
+    <footer className="bg-white text-neutral-600 select-none py-18 font-sans text-xs border-t border-neutral-200">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Main 4-Column Grid layout */}
@@ -20,13 +20,13 @@ export default function Footer() {
           {/* DOBGE Branding Column */}
           <div className="space-y-4">
             <div className="flex items-center gap-1 select-none">
-              <span className="font-display text-2xl tracking-[0.05em] text-white font-black">
+              <span className="font-display text-2xl tracking-[0.05em] text-black font-black">
                 DOBGE
               </span>
-              <span className="text-[8px] font-mono text-neutral-500 align-super select-none">®</span>
+              <span className="text-[8px] font-mono text-neutral-400 align-super select-none">®</span>
             </div>
             
-            <p className="text-[11px] text-neutral-500 leading-relaxed font-light">
+            <p className="text-[11px] text-neutral-600 leading-relaxed font-light">
               Plataforma de alta moda urbana contemporánea. Confección, gramaje insuperable y patronaje optimizado de distribución controlada nacional desde la ciudad de Madrid.
             </p>
 
@@ -37,7 +37,7 @@ export default function Footer() {
                   href={item.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-8 h-8 rounded-full border border-neutral-800 flex items-center justify-center hover:bg-white hover:text-black hover:border-white text-neutral-400 transition-colors"
+                  className="w-11 h-11 rounded-full border border-neutral-200 flex items-center justify-center hover:bg-black hover:text-white hover:border-black text-neutral-500 transition-colors"
                   title={item.label}
                   id={`footer-social-${index}`}
                 >
@@ -49,66 +49,66 @@ export default function Footer() {
 
           {/* Catalog shortcuts and categories */}
           <div className="space-y-4">
-            <h3 className="font-mono text-[10px] tracking-widest text-white uppercase font-bold">
+            <h3 className="font-mono text-[10px] tracking-widest text-black uppercase font-bold">
               Catálogo Corto
             </h3>
-            <ul className="space-y-2 text-[11px] font-light text-neutral-500">
+            <ul className="space-y-2 text-[11px] font-light text-neutral-600">
               <li>
-                <a href="#product-showcase" className="hover:text-white transition-colors">RAW TRACE Collection</a>
+                <a href="#product-showcase" className="hover:text-black transition-colors">RAW TRACE Collection</a>
               </li>
               <li>
-                <a href="#product-showcase" className="hover:text-white transition-colors">Sudaderas Over 450 GSM</a>
+                <a href="#product-showcase" className="hover:text-black transition-colors">Sudaderas Over 450 GSM</a>
               </li>
               <li>
-                <a href="#product-showcase" className="hover:text-white transition-colors font-medium text-[#FF4838]">Nueva Temporada Drops</a>
+                <a href="#product-showcase" className="hover:text-[#FF2B85] transition-colors font-medium text-[#FF2B85]">Nueva Temporada Drops</a>
               </li>
               <li>
-                <a href="#product-showcase" className="hover:text-white transition-colors">Básicos Retiro Vintage</a>
+                <a href="#product-showcase" className="hover:text-black transition-colors">Básicos Retiro Vintage</a>
               </li>
             </ul>
           </div>
 
           {/* Legal and information details */}
           <div className="space-y-4">
-            <h3 className="font-mono text-[10px] tracking-widest text-white uppercase font-bold">
+            <h3 className="font-mono text-[10px] tracking-widest text-black uppercase font-bold">
               Soporte y Legales
             </h3>
-            <ul className="space-y-2 text-[11px] font-light text-neutral-500">
+            <ul className="space-y-2 text-[11px] font-light text-neutral-600">
               <li>
-                <button onClick={() => setActiveLegalModal('privacy')} className="hover:text-white transition-colors text-left">
+                <button onClick={() => setActiveLegalModal('privacy')} className="hover:text-black transition-colors text-left cursor-pointer">
                   Política de Privacidad
                 </button>
               </li>
               <li>
-                <button onClick={() => setActiveLegalModal('terms')} className="hover:text-white transition-colors text-left">
+                <button onClick={() => setActiveLegalModal('terms')} className="hover:text-black transition-colors text-left cursor-pointer">
                   Términos y condiciones de Venta
                 </button>
               </li>
               <li>
-                <a href="#about-dobge" className="hover:text-white transition-colors">Garantía de Sostenibilidad</a>
+                <a href="#about-dobge" className="hover:text-black transition-colors">Garantía de Sostenibilidad</a>
               </li>
               <li>
-                <span className="text-neutral-600 block">Soporte Albaranes: Madrid, es_ES</span>
+                <span className="text-neutral-500 block pb-1">Soporte Albaranes: Madrid, es_ES</span>
               </li>
             </ul>
           </div>
 
           {/* Headquarters contact */}
           <div className="space-y-4">
-            <h3 className="font-mono text-[10px] tracking-widest text-white uppercase font-bold">
+            <h3 className="font-mono text-[10px] tracking-widest text-black uppercase font-bold">
               Contacto Principal
             </h3>
-            <ul className="space-y-3 text-[11px] font-light text-neutral-500">
+            <ul className="space-y-3 text-[11px] font-light text-neutral-600">
               <li className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-neutral-600 mt-0.5 flex-shrink-0" />
+                <MapPin className="w-4 h-4 text-neutral-400 mt-0.5 flex-shrink-0" />
                 <span>Oficina central & Almacén central, Madrid, España (28014).</span>
               </li>
               <li className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-neutral-600 flex-shrink-0" />
-                <a href="mailto:soporte@dobge.com" className="hover:text-white transition-colors">soporte@dobge.com</a>
+                <Mail className="w-4 h-4 text-neutral-400 flex-shrink-0" />
+                <a href="mailto:soporte@dobge.com" className="hover:text-black transition-colors">soporte@dobge.com</a>
               </li>
               <li className="flex items-center gap-2">
-                <FileText className="w-4 h-4 text-neutral-600 flex-shrink-0" />
+                <FileText className="w-4 h-4 text-neutral-400 flex-shrink-0" />
                 <span>Atención: Lunes - Viernes, 09:00 a 18:00 CEST.</span>
               </li>
             </ul>
@@ -118,7 +118,7 @@ export default function Footer() {
 
         {/* Dynamic Legal Modals overlay (Simulated in the footer) */}
         {activeLegalModal && (
-          <div className="fixed inset-0 z-55 overflow-y-auto bg-black/80 flex items-center justify-center p-4 backdrop-blur-xs">
+          <div className="fixed inset-0 z-50 overflow-y-auto bg-black/50 flex items-center justify-center p-4 backdrop-blur-xs animate-none">
             <div className="bg-white text-black p-6 md:p-8 max-w-lg w-full shadow-2xl border border-neutral-200 space-y-4 relative">
               <button 
                 onClick={() => setActiveLegalModal(null)}
@@ -152,7 +152,7 @@ export default function Footer() {
               <div className="pt-2">
                 <button 
                   onClick={() => setActiveLegalModal(null)}
-                  className="w-full bg-black text-white py-3 text-xs font-mono tracking-widest uppercase hover:bg-neutral-800 transition-colors"
+                  className="w-full bg-black text-white py-3 text-xs font-mono tracking-widest uppercase hover:bg-[#FF2B85] transition-colors cursor-pointer"
                 >
                   Entendido y Aceptar
                 </button>
@@ -162,12 +162,12 @@ export default function Footer() {
         )}
 
         {/* Copyright and trademark indicators footer */}
-        <div className="mt-14 pt-8 border-t border-neutral-900 flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-[10px] text-neutral-600 uppercase tracking-widest">
+        <div className="mt-14 pt-8 border-t border-neutral-200 flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-[10px] text-neutral-550 uppercase tracking-widest">
           <p>© {new Date().getFullYear()} DOBGE Inc. España. Todos los derechos reservados.</p>
           <div className="flex gap-4">
             <span>Hecho en Madrid</span>
             <span>•</span>
-            <span className="text-neutral-500 font-bold decoration-neutral-600 underline">Aprobación de Calidad Premium</span>
+            <span className="text-[#FF2B85] font-bold decoration-neutral-300 underline">Aprobación de Calidad Premium</span>
           </div>
         </div>
 

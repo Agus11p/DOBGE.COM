@@ -74,31 +74,31 @@ export default function Cart({
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+    <div className="fixed inset-0 z-50 overflow-hidden text-sm" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
       <div className="absolute inset-0 overflow-hidden">
         {/* Backdrop background */}
         <div 
-          className="absolute inset-0 bg-black/85 backdrop-blur-md transition-opacity duration-300" 
+          className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300" 
           onClick={onClose}
         />
 
         <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-          <div className="pointer-events-auto w-screen max-w-md border-l border-neutral-900">
-            <div className="flex h-full flex-col bg-[#0B0B0C] shadow-2xl text-white">
+          <div className="pointer-events-auto w-screen max-w-md border-l border-neutral-200 animate-none">
+            <div className="flex h-full flex-col bg-white shadow-2xl text-black">
               
               {/* Header */}
-              <div className="p-6 border-b border-neutral-900 flex items-center justify-between">
+              <div className="p-6 border-b border-neutral-200 flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
-                  <span className="text-sm font-mono tracking-widest uppercase font-bold text-white">
+                  <span className="text-sm font-mono tracking-widest uppercase font-bold text-black">
                     Cesta de compra
                   </span>
-                  <span className="bg-[#FF4838] text-white font-mono text-[10px] w-5 h-5 flex items-center justify-center font-bold">
+                  <span className="bg-[#FF2B85] text-white font-mono text-[10px] w-5 h-5 flex items-center justify-center font-bold">
                     {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
                   </span>
                 </div>
                 <button 
                   onClick={onClose}
-                  className="p-1.5 hover:bg-neutral-900 text-neutral-400 hover:text-white transition-colors cursor-pointer"
+                  className="p-1.5 hover:bg-neutral-100 text-neutral-400 hover:text-black transition-colors cursor-pointer rounded-full"
                   id="close-cart-drawer"
                 >
                   <X className="w-5 h-5" />
@@ -107,20 +107,20 @@ export default function Cart({
 
               {/* Dynamic Free Shipping Progress Tracker */}
               {cartItems.length > 0 && (
-                <div className="bg-[#0F0F10] px-6 py-4.5 border-b border-neutral-900">
+                <div className="bg-neutral-55 px-6 py-4.5 border-b border-neutral-200">
                   <div className="flex justify-between items-center text-[10px] uppercase font-mono tracking-wider mb-2">
                     {isShippingFree ? (
-                      <span className="text-green-500 font-bold">✨ ¡Enhorabuena! Tienes Envío Estándar Gratis</span>
+                      <span className="text-green-600 font-bold">✨ ¡Enhorabuena! Tienes Envío Estándar Gratis</span>
                     ) : (
-                      <span className="text-neutral-400">
-                        Te faltan <span className="text-[#FF4838] font-bold">{missingForFreeShipping.toFixed(2)} €</span> para Envío Gratis
+                      <span className="text-neutral-500">
+                        Te faltan <span className="text-[#FF2B85] font-bold">{missingForFreeShipping.toFixed(2)} €</span> para Envío Gratis
                       </span>
                     )}
-                    <span className="text-neutral-400">{progressToFreeShipping.toFixed(0)}%</span>
+                    <span className="text-neutral-550">{progressToFreeShipping.toFixed(0)}%</span>
                   </div>
-                  <div className="w-full bg-neutral-900 h-1.5 overflow-hidden">
+                  <div className="w-full bg-neutral-200 h-1.5 overflow-hidden">
                     <div 
-                      className={`h-full transition-all duration-500 ${isShippingFree ? 'bg-green-500' : 'bg-[#FF4838]'}`}
+                      className={`h-full transition-all duration-500 ${isShippingFree ? 'bg-green-600' : 'bg-[#FF2B85]'}`}
                       style={{ width: `${progressToFreeShipping}%` }}
                     />
                   </div>
@@ -131,45 +131,47 @@ export default function Cart({
               <div className="flex-1 overflow-y-auto p-6 space-y-4 no-scrollbar">
                 {cartItems.length === 0 ? (
                   <div className="h-full flex flex-col items-center justify-center text-center py-12">
-                    <div className="w-16 h-16 bg-neutral-950 flex items-center justify-center text-neutral-500 mb-4 border border-neutral-900">
+                    <div className="w-16 h-16 bg-neutral-50 flex items-center justify-center text-neutral-450 mb-4 border border-neutral-200">
                       <Trash2 className="w-6 h-6" />
                     </div>
-                    <p className="text-sm font-mono uppercase tracking-widest text-[#FF4838] font-bold">Tu cesta está vacía</p>
-                    <p className="text-xs text-neutral-400 mt-2 max-w-[250px] leading-relaxed">
+                    <p className="text-sm font-mono uppercase tracking-widest text-[#FF2B85] font-bold">Tu cesta está vacía</p>
+                    <p className="text-xs text-neutral-500 mt-2 max-w-[250px] leading-relaxed font-light">
                       Añade prendas de nuestra colección premium exclusiva de alta calidad para empezar.
                     </p>
                     <button
                       onClick={onClose}
-                      className="mt-6 border border-neutral-800 bg-[#0F0F10] text-white px-6 py-3 text-[10px] font-mono tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-200 cursor-pointer"
+                      className="mt-6 border border-neutral-200 bg-neutral-50 text-black px-6 py-3 text-[10px] font-mono tracking-widest uppercase hover:bg-black hover:text-white transition-all duration-200 cursor-pointer"
                     >
                       Seguir Explorando
                     </button>
                   </div>
                 ) : (
-                  <div className="divide-y divide-neutral-900">
+                  <div className="divide-y divide-neutral-200">
                     {cartItems.map((item, index) => (
                       <div key={index} className="flex py-5 first:pt-0 last:pb-0 gap-4" id={`cart-item-${index}`}>
-                        <div className="h-24 w-18 flex-shrink-0 overflow-hidden bg-neutral-950 border border-neutral-900 aspect-[3/4]">
+                        <div className="h-24 w-18 flex-shrink-0 overflow-hidden bg-neutral-50 border border-neutral-200 aspect-[3/4]">
                           <img
-                            src={item.product.image}
+                            src={item.product.image.includes('dobge.com') ? item.product.image.replace(/&width=\d+/g, '&width=150') : item.product.image}
                             alt={item.product.name}
                             className="h-full w-full object-cover object-center opacity-85"
                             referrerPolicy="no-referrer"
+                            loading="lazy"
+                            decoding="async"
                           />
                         </div>
 
                         <div className="flex flex-1 flex-col justify-between">
                           <div>
-                            <div className="flex justify-between text-xs font-mono font-bold text-white uppercase">
+                            <div className="flex justify-between text-xs font-mono font-bold text-black uppercase">
                               <h3 className="tracking-wider line-clamp-1">{item.product.name}</h3>
                               <p className="ml-4 whitespace-nowrap">{(item.product.price * item.quantity).toFixed(2)} €</p>
                             </div>
-                            <p className="mt-1 text-[10px] font-mono text-neutral-400 uppercase flex items-center gap-1.5">
-                              <span>Talla: <strong className="text-[#FF4838] font-bold">{item.selectedSize}</strong></span>
-                              <span className="text-neutral-800">|</span>
+                            <p className="mt-1 text-[10px] font-mono text-neutral-550 uppercase flex items-center gap-1.5">
+                              <span>Talla: <strong className="text-[#FF2B85] font-bold">{item.selectedSize}</strong></span>
+                              <span className="text-neutral-300">|</span>
                               <span>Color:</span>
                               <span 
-                                className="w-2.5 h-2.5 rounded-full border border-neutral-900 inline-block align-middle"
+                                className="w-2.5 h-2.5 rounded-full border border-neutral-250 inline-block align-middle"
                                 style={{ backgroundColor: item.selectedColor.hex }}
                                 title={item.selectedColor.name}
                               />
@@ -178,28 +180,28 @@ export default function Cart({
 
                           <div className="flex items-center justify-between mt-2">
                             {/* Quantity Controls */}
-                            <div className="flex items-center border border-neutral-800 bg-[#0F0F10]">
+                            <div className="flex items-center border border-neutral-200 bg-neutral-50">
                               <button
                                 onClick={() => onUpdateQuantity(index, item.quantity - 1)}
-                                className="p-1.5 hover:bg-neutral-900 transition-colors cursor-pointer"
+                                className="p-1.5 hover:bg-neutral-100 transition-colors cursor-pointer border-r border-neutral-200"
                                 title="Reducir"
                               >
-                                <Minus className="w-3.5 h-3.5 text-neutral-400" />
+                                <Minus className="w-3.5 h-3.5 text-neutral-500" />
                               </button>
                               <span className="px-3 text-xs font-mono font-medium">{item.quantity}</span>
                               <button
                                 onClick={() => onUpdateQuantity(index, item.quantity + 1)}
-                                className="p-1.5 hover:bg-neutral-900 transition-colors cursor-pointer"
+                                className="p-1.5 hover:bg-neutral-100 transition-colors cursor-pointer border-l border-neutral-200"
                                 title="Aumentar"
                               >
-                                <Plus className="w-3.5 h-3.5 text-neutral-400" />
+                                <Plus className="w-3.5 h-3.5 text-neutral-500" />
                               </button>
                             </div>
 
                             {/* Trash button */}
                             <button
                               onClick={() => onRemoveItem(index)}
-                              className="text-neutral-500 hover:text-[#FF4838] transition-colors flex items-center gap-1 text-[10px] font-mono uppercase cursor-pointer"
+                              className="text-neutral-400 hover:text-[#FF2B85] transition-colors flex items-center gap-1 text-[10px] font-mono uppercase cursor-pointer bg-transparent border-none outline-none"
                               id={`delete-cart-item-${index}`}
                             >
                               <Trash2 className="w-3.5 h-3.5" />
@@ -215,36 +217,36 @@ export default function Cart({
 
               {/* Promo input + Pricing block */}
               {cartItems.length > 0 && (
-                <div className="border-t border-neutral-900 p-6 bg-[#0F0F10] space-y-4">
+                <div className="border-t border-neutral-200 p-6 bg-neutral-50 space-y-4">
                   {/* Coupon Form */}
                   <form onSubmit={handleApplyPromo} className="flex gap-2">
                     <div className="relative flex-1">
-                      <Tag className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-neutral-500" />
+                      <Tag className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-neutral-450" />
                       <input
                         type="text"
                         placeholder="CÓDIGO DE DESCUENTO"
                         value={promoInput}
                         onChange={(e) => setPromoInput(e.target.value)}
-                        className="w-full bg-[#070708] border border-neutral-800 text-xs font-mono tracking-wider pl-9 pr-4 py-2.5 focus:border-[#FF4838] focus:outline-none placeholder:text-neutral-500 text-white uppercase text-center sm:text-left"
+                        className="w-full bg-white border border-neutral-200 text-xs font-mono tracking-wider pl-9 pr-4 py-2.5 focus:border-[#FF2B85] focus:outline-none placeholder:text-neutral-400 text-black uppercase text-center sm:text-left"
                       />
                     </div>
                     <button
                       type="submit"
-                      className="bg-[#FF4838] text-white text-[10px] font-mono tracking-widest px-4 py-2.5 uppercase hover:bg-white hover:text-black transition-colors cursor-pointer font-bold"
+                      className="bg-black text-white hover:bg-[#FF2B85] text-[10px] font-mono tracking-widest px-4 py-2.5 uppercase transition-colors cursor-pointer font-bold border-none"
                     >
                       Aplicar
                     </button>
                   </form>
 
                   {/* Promo status warnings */}
-                  {promoError && <p className="text-[10px] font-mono text-red-500">{promoError}</p>}
+                  {promoError && <p className="text-[10px] font-mono text-[#FF2B85]">{promoError}</p>}
                   {promoSuccess && (
-                    <div className="flex justify-between items-center bg-green-950/40 text-green-400 p-2.5 border border-green-900 rounded-none text-[10px] font-mono">
+                    <div className="flex justify-between items-center bg-green-50 text-green-600 p-2.5 border border-green-200 rounded-none text-[10px] font-mono">
                       <span>{promoSuccess}</span>
                       <button 
                         type="button" 
                         onClick={handleRemoveAppliedPromo}
-                        className="text-red-400 font-bold hover:underline cursor-pointer"
+                        className="text-red-500 font-bold hover:underline cursor-pointer bg-transparent border-none p-0 outline-none"
                       >
                         Quitar
                       </button>
@@ -252,14 +254,14 @@ export default function Cart({
                   )}
 
                   {/* Subtotal blocks */}
-                  <div className="space-y-2 mt-4 text-xs font-mono text-neutral-400">
+                  <div className="space-y-2 mt-4 text-xs font-mono text-neutral-600">
                     <div className="flex justify-between">
                       <span>Subtotal</span>
-                      <span className="text-white">{subtotal.toFixed(2)} €</span>
+                      <span className="text-black font-semibold">{subtotal.toFixed(2)} €</span>
                     </div>
                     
                     {activeDiscount > 0 && (
-                      <div className="flex justify-between text-green-400 font-medium">
+                      <div className="flex justify-between text-green-600 font-semibold">
                         <span className="flex items-center gap-1">
                           <Percent className="w-3 h-3" /> Descuento aplicado
                         </span>
@@ -269,19 +271,19 @@ export default function Cart({
 
                     <div className="flex justify-between">
                       <span>Envío estándar</span>
-                      <span className="text-white">{shippingCost === 0 ? 'Gratuito' : `${shippingCost.toFixed(2)} €`}</span>
+                      <span className="text-black font-semibold">{shippingCost === 0 ? 'Gratuito' : `${shippingCost.toFixed(2)} €`}</span>
                     </div>
 
-                    <div className="flex justify-between text-sm font-sans font-bold text-white border-t border-neutral-900 pt-3.5">
+                    <div className="flex justify-between text-sm font-sans font-bold text-black border-t border-neutral-200 pt-3.5">
                       <span className="tracking-wide text-xs uppercase font-mono">Total Estimado</span>
-                      <span className="font-mono text-base text-[#FF4838]">{total.toFixed(2)} €</span>
+                      <span className="font-mono text-base text-[#FF2B85]">{total.toFixed(2)} €</span>
                     </div>
                   </div>
 
                   {/* Move to Checkout */}
                   <button
                     onClick={onGoToCheckout}
-                    className="w-full bg-[#FF4838] text-white py-4 px-6 text-xs font-mono font-bold tracking-widest uppercase flex items-center justify-center gap-2.5 hover:bg-white hover:text-black transition-colors mt-4 shadow-lg group cursor-pointer"
+                    className="w-full bg-[#FF2B85] text-white py-4 px-6 text-xs font-mono font-bold tracking-widest uppercase flex items-center justify-center gap-2.5 hover:bg-black transition-colors mt-4 shadow-md group cursor-pointer border-none"
                     id="checkout-trigger-btn"
                   >
                     <span>Iniciar Pago Seguro</span>

@@ -15,7 +15,16 @@ export default function ProductCard({ product, onViewProduct, onAddToCart }: Pro
   const [showSizes, setShowSizes] = React.useState(false);
   const [cardImageIndex, setCardImageIndex] = React.useState(0);
 
-  const images = [product.image, product.hoverImage, product.lifestyleImage].filter(Boolean) as string[];
+  const getOptimizedImageUrl = (url: string) => {
+    if (url && url.includes('dobge.com') && url.includes('&width=')) {
+      return url.replace(/&width=\d+/g, '&width=600');
+    }
+    return url;
+  };
+
+  const images = [product.image, product.hoverImage, product.lifestyleImage]
+    .filter(Boolean)
+    .map((url) => getOptimizedImageUrl(url as string));
 
   const handleQuickAdd = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -30,18 +39,18 @@ export default function ProductCard({ product, onViewProduct, onAddToCart }: Pro
 
   return (
     <div 
-      className="group relative flex flex-col bg-[#0F0F10] border border-neutral-900 hover:border-neutral-800 transition-colors overflow-hidden"
+      className="group relative flex flex-col bg-white border border-neutral-200 hover:border-neutral-400 transition-colors overflow-hidden"
       id={`product-card-${product.id}`}
     >
       {/* Image Container */}
       <div 
-        className="relative aspect-[3/4] w-full overflow-hidden bg-neutral-950 cursor-pointer"
+        className="relative aspect-[3/4] w-full overflow-hidden bg-neutral-50 cursor-pointer"
         onClick={() => onViewProduct(product)}
       >
         {/* Badges */}
         <div className="absolute top-4 left-4 z-10 flex flex-col gap-2">
           {product.originalPrice && (
-            <span className="bg-[#FF4838] text-white text-[10px] tracking-widest font-mono uppercase px-2 py-0.5 font-bold">
+            <span className="bg-[#FF2B85] text-white text-[10px] tracking-widest font-mono uppercase px-2 py-0.5 font-bold">
               REBAJAS
             </span>
           )}
@@ -60,10 +69,12 @@ export default function ProductCard({ product, onViewProduct, onAddToCart }: Pro
             animate={{ opacity: 0.8, scale: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
-            src={images[cardImageIndex] || product.image}
+            src={images[cardImageIndex] || getOptimizedImageUrl(product.image)}
             alt={product.name}
             className="absolute inset-0 h-full w-full object-cover object-center group-hover:opacity-100 transition-opacity duration-300"
             referrerPolicy="no-referrer"
+            loading="lazy"
+            decoding="async"
           />
         </AnimatePresence>
 
@@ -75,7 +86,7 @@ export default function ProductCard({ product, onViewProduct, onAddToCart }: Pro
                 e.stopPropagation();
                 setCardImageIndex((prev) => (prev - 1 + images.length) % images.length);
               }}
-              className="bg-black/85 hover:bg-[#FF4838] border border-neutral-800 p-1 text-white transition-colors cursor-pointer rounded-full"
+              className="bg-black/85 hover:bg-[#FF2B85] border border-neutral-700 p-1 text-white transition-colors cursor-pointer rounded-full"
               title="Imagen anterior"
             >
               <ChevronLeft className="w-3.5 h-3.5" />
@@ -85,7 +96,7 @@ export default function ProductCard({ product, onViewProduct, onAddToCart }: Pro
                 e.stopPropagation();
                 setCardImageIndex((prev) => (prev + 1) % images.length);
               }}
-              className="bg-black/85 hover:bg-[#FF4838] border border-neutral-800 p-1 text-white transition-colors cursor-pointer rounded-full"
+              className="bg-black/85 hover:bg-[#FF2B85] border border-neutral-700 p-1 text-white transition-colors cursor-pointer rounded-full"
               title="Siguiente imagen"
             >
               <ChevronRight className="w-3.5 h-3.5" />
@@ -102,10 +113,10 @@ export default function ProductCard({ product, onViewProduct, onAddToCart }: Pro
                 type="button"
                 onClick={(e) => {
                   e.stopPropagation();
-                  setCardImageIndex(idx);
+                   setCardImageIndex(idx);
                 }}
                 className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                  cardImageIndex === idx ? 'bg-[#FF4838] w-3.5' : 'bg-neutral-600 hover:bg-neutral-400'
+                  cardImageIndex === idx ? 'bg-[#FF2B85] w-3.5' : 'bg-neutral-300 hover:bg-neutral-400'
                 }`}
                 title={`Ver imagen ${idx + 1}`}
               />
@@ -114,14 +125,14 @@ export default function ProductCard({ product, onViewProduct, onAddToCart }: Pro
         )}
 
         {/* Hover overlay with actions */}
-        <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6 z-10">
+        <div className="absolute inset-0 bg-black/35 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6 z-10">
           <div className="flex gap-2">
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 onViewProduct(product);
               }}
-              className="bg-neutral-900 text-white border border-neutral-800 p-3 hover:bg-[#FF4838] hover:border-[#FF4838] transition-colors duration-300 shadow-md cursor-pointer"
+              className="bg-white text-black border border-neutral-200 p-3 hover:bg-[#FF2B85] hover:border-[#FF2B85] hover:text-white transition-colors duration-300 shadow-md cursor-pointer"
               title="Ver detalle"
               id={`view-btn-${product.id}`}
             >
@@ -129,7 +140,7 @@ export default function ProductCard({ product, onViewProduct, onAddToCart }: Pro
             </button>
             <button
               onClick={handleQuickAdd}
-              className="bg-[#FF4838] text-white px-4 py-3 hover:bg-white hover:text-black font-mono text-xs tracking-widest transition-colors duration-300 shadow-md flex items-center gap-2 cursor-pointer font-bold"
+              className="bg-black text-white px-4 py-3 hover:bg-[#FF2B85] font-mono text-xs tracking-widest transition-colors duration-300 shadow-md flex items-center gap-2 cursor-pointer font-bold animate-none"
               title="Añadir rápido"
               id={`quick-add-${product.id}`}
             >
@@ -141,16 +152,16 @@ export default function ProductCard({ product, onViewProduct, onAddToCart }: Pro
 
         {/* Quick Size Selection Overlay */}
         {showSizes && (
-          <div className="absolute inset-x-0 bottom-0 bg-neutral-950/95 backdrop-blur-sm p-4 border-t border-neutral-800 transition-all duration-300 z-40 text-center">
-            <p className="text-[10px] font-mono tracking-widest text-[#FF4838] mb-2 uppercase text-center font-bold">
+          <div className="absolute inset-x-0 bottom-0 bg-white/98 backdrop-blur-sm p-4 border-t border-neutral-200 transition-all duration-300 z-40 text-center">
+            <p className="text-[10px] font-mono tracking-widest text-[#FF2B85] mb-2 uppercase text-center font-bold">
               SELECCIONA TALLA
             </p>
-            <div className="flex justify-center gap-1.5">
+            <div className="flex justify-center gap-3">
               {product.sizes.map((size) => (
                 <button
                   key={size}
                   onClick={(e) => selectQuickSize(e, size)}
-                  className="w-10 h-10 border border-neutral-800 text-xs font-mono font-medium hover:border-[#FF4838] hover:bg-[#FF4838] text-white transition-all duration-200 flex items-center justify-center cursor-pointer"
+                  className="w-12 h-12 border border-neutral-200 text-xs font-mono font-medium hover:border-[#FF2B85] hover:bg-[#FF2B85] text-black hover:text-white transition-all duration-200 flex items-center justify-center cursor-pointer rounded-none"
                 >
                   {size}
                 </button>
@@ -161,7 +172,7 @@ export default function ProductCard({ product, onViewProduct, onAddToCart }: Pro
                 e.stopPropagation();
                 setShowSizes(false);
               }}
-              className="w-full text-center text-[9px] font-mono tracking-wider text-red-500 mt-3 hover:underline uppercase cursor-pointer"
+              className="w-full text-center text-[10px] font-mono tracking-wider text-[#FF2B85] mt-3 hover:underline uppercase cursor-pointer"
             >
               Cancelar
             </button>
@@ -170,16 +181,16 @@ export default function ProductCard({ product, onViewProduct, onAddToCart }: Pro
       </div>
 
       {/* Info Panel */}
-      <div className="p-4 flex flex-col bg-[#0F0F10] z-20">
+      <div className="p-4 flex flex-col bg-white z-20">
         <div className="flex justify-between items-start gap-3">
           <h3 
-            className="text-xs font-mono font-bold text-white tracking-wider hover:text-[#FF4838] transition-colors cursor-pointer uppercase line-clamp-1"
+            className="text-xs font-mono font-bold text-black tracking-wider hover:text-[#FF2B85] transition-colors cursor-pointer uppercase line-clamp-1"
             onClick={() => onViewProduct(product)}
           >
             {product.name}
           </h3>
           <div className="flex flex-col items-end">
-            <span className="text-xs font-mono font-bold text-white whitespace-nowrap">
+            <span className="text-xs font-mono font-bold text-black whitespace-nowrap">
               {product.price.toFixed(2)} €
             </span>
             {product.originalPrice && (
@@ -191,24 +202,24 @@ export default function ProductCard({ product, onViewProduct, onAddToCart }: Pro
         </div>
 
         {/* Context metadata traits */}
-        <div className="mt-1 flex items-center justify-between text-[10px] text-neutral-400 font-mono">
+        <div className="mt-1 flex items-center justify-between text-[10px] text-neutral-500 font-mono">
           <span className="uppercase">Corte {product.fit}</span>
           <span>{product.gsm ? `${product.gsm} GSM` : 'PREMIUM'}</span>
         </div>
 
         {/* Micro color chips & product indicators */}
-        <div className="mt-3 flex items-center justify-between border-t border-neutral-900/60 pt-3">
+        <div className="mt-3 flex items-center justify-between border-t border-neutral-200 pt-3">
           <div className="flex gap-1">
             {product.colors.map((col) => (
               <span 
                 key={col.name}
-                className="w-2.5 h-2.5 rounded-full border border-neutral-800 scale-100 group-hover:scale-110 transition-transform"
+                className="w-2.5 h-2.5 rounded-full border border-neutral-200 scale-100 group-hover:scale-110 transition-transform"
                 style={{ backgroundColor: col.hex }}
                 title={col.name}
               />
             ))}
           </div>
-          <span className="text-[9px] font-mono tracking-widest text-[#FF4838] font-bold">DOBGE® DIGITAL</span>
+          <span className="text-[9px] font-mono tracking-widest text-[#FF2B85] font-bold">DOBGE® DIGITAL</span>
         </div>
       </div>
     </div>

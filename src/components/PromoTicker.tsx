@@ -15,7 +15,7 @@ export default function PromoTicker() {
   const repeatedList = [...phrases, ...phrases, ...phrases, ...phrases];
 
   return (
-    <div className="w-full bg-[#FF4838] border-t border-b border-[#FF4838] overflow-hidden py-4 select-none relative z-10 font-display">
+    <div className="w-full bg-[#FF2B85] border-t border-b border-[#FF2B85] overflow-hidden py-4 select-none relative z-10 font-display">
       <div className="flex whitespace-nowrap animate-[marquee_25s_linear_infinite] hover:[animation-play-state:paused]">
         {repeatedList.map((phrase, idx) => (
           <div 
